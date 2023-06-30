@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Toimage</title>
+    <style>
+        /* 样式表 */
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: block; /* 修改按钮为块级元素 */
+            font-size: 16px;
+            font-weight: bold; /* 加粗字体 */
+            margin-top: 10px; /* 调整按钮与文字之间的距离 */
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            background-color: #3e8e41;
+        }
+        /* 居中显示 */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* 加粗字体 */
+        p {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        /* 复制文本函数 */
+        function copyText(text) {
+            var textarea = document.createElement('textarea');
+            textarea.textContent = text;
+            document.body.appendChild(textarea);
+
+            textarea.select();
+            document.execCommand('copy');
+
+            document.body.removeChild(textarea);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <p>{{.ImageName}}</p>
+        <button class="copy-btn" onclick="copyText('{{.ImageName}}')">复制</button> <!-- 将按钮放在段落下面 -->
+        <p>{{.Command}}</p>
+        <button class="copy-btn" onclick="copyText('{{.Command}}')">复制</button> <!-- 将按钮放在段落下面 -->
+    </div>
+</body>
+</html>
